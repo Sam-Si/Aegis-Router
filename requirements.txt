@@ -1,0 +1,95 @@
+# =============================================================================
+# Aegis-Router: Cache-Aware LLM Orchestrator — Python Dependencies
+# =============================================================================
+
+# ---------------------
+# Core Inference Engine
+# ---------------------
+llama-cpp-python          # CPU-optimized GGUF inference (llama.cpp bindings)
+
+# ---------------------
+# IPC & Shared Memory
+# ---------------------
+posix_ipc                 # POSIX shared memory (shm_open) & semaphores
+# mmap, multiprocessing.shared_memory — stdlib, no install needed
+
+# ---------------------
+# API & Networking
+# ---------------------
+fastapi                   # Router HTTP API
+uvicorn[standard]         # ASGI server with uvloop + httptools
+httpx                     # Async HTTP client (load testing, inter-pod comms)
+websockets                # WebSocket support for streaming tokens
+pydantic>=2.0             # Request/response validation (FastAPI dep)
+
+# ---------------------
+# Consistent Hashing & Data Structures
+# ---------------------
+uhashring                 # Consistent hashing ring implementation
+sortedcontainers          # Sorted sets/dicts for Radix Trie ordered ops
+mmh3                      # MurmurHash3 — fast non-crypto hashing for prefix chunks
+
+# ---------------------
+# Process & System Management
+# ---------------------
+psutil                    # CPU load monitoring for balancer (load > 90% overflow)
+supervisor                # Process manager for 5 model pods
+setproctitle              # Name worker processes for monitoring
+
+# ---------------------
+# Concurrency & Async
+# ---------------------
+anyio                     # Async primitives (used by FastAPI internally)
+uvloop                    # Fast event loop (Linux)
+
+# ---------------------
+# Numerical / Array Operations
+# ---------------------
+numpy>=2.0.0              # Array ops, memory views for KV-cache manipulation
+
+# ---------------------
+# Observability & Metrics
+# ---------------------
+prometheus_client         # Metrics: TTFT, ITL, throughput, cache hit rate
+structlog                 # Structured logging for multi-pod debugging
+rich                      # Pretty console output, tables, progress bars
+tqdm                      # Progress bars for benchmarks
+
+# ---------------------
+# Benchmarking & Profiling
+# ---------------------
+pytest                    # Test framework
+pytest-benchmark          # Micro-benchmarks (hand-off time, routing latency)
+pytest-asyncio            # Async test support
+pytest-timeout            # Timeout for hanging tests
+pytest-xdist              # Parallel test execution
+locust                    # HTTP load testing (100 concurrent users simulation)
+memory_profiler           # Per-line memory profiling (KV-cache verification)
+line_profiler             # Per-line CPU profiling (hot path optimization)
+py-spy                    # Sampling profiler (non-invasive, attach to running pods)
+memray                    # Memory profiler with flamegraphs
+
+# ---------------------
+# Data Analysis & Visualization (Benchmarks)
+# ---------------------
+pandas                    # Benchmark results analysis
+matplotlib                # Latency distribution plots
+seaborn                   # Statistical visualization
+plotly                    # Interactive benchmark dashboards
+tabulate                  # CLI table output for benchmark results
+
+# ---------------------
+# Serialization & Config
+# ---------------------
+pyyaml                    # Config files
+msgpack                   # Fast binary serialization (alternative to JSON for IPC)
+orjson                    # Fastest JSON serialization
+
+# ---------------------
+# Dev Tools
+# ---------------------
+ipython                   # Interactive debugging inside Docker
+black                     # Code formatting
+ruff                      # Linting
+mypy                      # Type checking
+ipdb                      # Interactive debugger
