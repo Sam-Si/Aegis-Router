@@ -59,6 +59,7 @@ tqdm                      # Progress bars for benchmarks
 # Benchmarking & Profiling
 # ---------------------
 pytest                    # Test framework
+pytest-cov                # Coverage reporting
 pytest-benchmark          # Micro-benchmarks (hand-off time, routing latency)
 pytest-asyncio            # Async test support
 pytest-timeout            # Timeout for hanging tests
